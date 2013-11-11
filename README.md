@@ -20,14 +20,14 @@ Or install it yourself as:
 
     require 'flume-logger'
     
-    ng_logger = FlumeLogger.new('localhost', 9090, :ng)
-    ng_logger.progname = 'test-ng'
-    ng_logger.info "Hello INFO from ruby"
-    ng_logger.warn "Hello WARN from ruby"
-    ng_logger.error "Hello ERROR from ruby"
+    logger = FlumeLogger.new('localhost', 9090)
+    logger.progname = 'test-flume-ng'
+    logger.info "Hello INFO from ruby"
+    logger.warn "Hello WARN from ruby"
+    logger.error "Hello ERROR from ruby"
     
     og_logger = FlumeLogger.new('localhost', 9090, :og)
-    og_logger.progname = 'test-og'
+    og_logger.progname = 'test-flume-og'
     og_logger.info "Hello from ruby"
 
 ## Contributing
