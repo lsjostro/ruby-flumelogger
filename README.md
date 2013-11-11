@@ -1,6 +1,6 @@
-# Flume::Logger
+# FlumeLogger
 
-TODO: Write a gem description
+This gem implements a subclass of Ruby's Logger class that logs directly to flume. It writes to a flume agent using thrift RPC, support both FlumeNG (default) or FlumeOG (ThriftLegacy).
 
 ## Installation
 
@@ -18,7 +18,17 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    require 'flume-logger'
+    
+    ng_logger = FlumeLogger.new('localhost', 9090, :ng)
+    ng_logger.progname = 'test-ng'
+    ng_logger.info "Hello INFO from ruby"
+    ng_logger.warn "Hello WARN from ruby"
+    ng_logger.error "Hello ERROR from ruby"
+    
+    og_logger = FlumeLogger.new('localhost', 9090, :og)
+    og_logger.progname = 'test-og'
+    og_logger.info "Hello from ruby"
 
 ## Contributing
 
