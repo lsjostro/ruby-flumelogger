@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "flume-logger"
   spec.version       = FlumeLogger::VERSION
   spec.authors       = ["Lars Sjöström"]
-  spec.email         = ["lars.sjostrom@svenskaspel.se"]
+  spec.email         = ["lars@radicore.se"]
   spec.description   = %q{TODO: Write a gem description}
   spec.summary       = %q{TODO: Write a gem summary}
   spec.homepage      = "https://github.com/lsjostro/ruby-flumelogger"
