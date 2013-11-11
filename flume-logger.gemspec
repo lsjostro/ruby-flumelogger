@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = FlumeLogger::VERSION
   spec.authors       = ["Lars Sjöström"]
   spec.email         = ["lars@radicore.se"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{Ruby logger that writes directly to Flume}
+  spec.summary       = %q{Flume logger for ruby}
   spec.homepage      = "https://github.com/lsjostro/ruby-flumelogger"
   spec.license       = "MIT"
 
