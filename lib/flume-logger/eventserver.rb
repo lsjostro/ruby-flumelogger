@@ -12,7 +12,6 @@ class FlumeLogger::Eventserver
 
       @client.append(event)
     rescue => e
-      raise
       warn "#{self.class} - #{e.class} - #{e.message}: #{event}"
       close
       @client = nil
@@ -20,7 +19,7 @@ class FlumeLogger::Eventserver
   end
 
   def close
-    @client && @transport.close
+    @client && @transport.close()
   rescue => e
     warn "#{self.class} - #{e.class} - #{e.message}"
   end
