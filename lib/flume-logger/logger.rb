@@ -3,13 +3,14 @@ class FlumeLogger < ::Logger
   attr_reader :client
   
   HOST = ::Socket.gethostname
-  PRIORITY = { "FATAL"   => 0,
-    "CRITICAL" => 0,
+  PRIORITY = {
+    "FATAL"    => 0,
     "ERROR"    => 1,
-    "WARNING"  => 2,
+    "WARN"     => 2,
     "INFO"     => 3,
     "DEBUG"    => 4,
-    "TRACE"    => 5 }
+    "TRACE"    => 5 
+  }
   
   def initialize(host, port, flume_type=:ng, headers={})
     super(::FlumeLogger::Eventserver.new(host, port, flume_type))
