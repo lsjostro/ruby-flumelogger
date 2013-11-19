@@ -41,13 +41,13 @@ class FlumeLogger < ::Logger
     if progname
       @headers['application'] = progname
     end
+    @headers['host'] ||= HOST
 
     event = case @type
     when :ng
       $:.push File.expand_path("../flume-ng", __FILE__)
       require 'thrift_source_protocol'
 
-      @headers['host'] = HOST
       @headers['pri'] = severity
       evt = ThriftFlumeEvent.new()
       evt.headers = @headers
@@ -61,8 +61,9 @@ class FlumeLogger < ::Logger
       evt.timestamp = time.to_f.to_i * 1000
       evt.priority = PRIORITY[severity]
       evt.body = message
-      evt.host = HOST
+      evt.host = @headers['host']
       evt.nanos = time.usec * 1000
+      @headers.delete('host')
       evt.fields = @headers
       evt
     end
