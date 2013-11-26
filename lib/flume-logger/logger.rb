@@ -41,7 +41,7 @@ class FlumeLogger < ::Logger
     data = message
     body = case data
     when Hash
-      @headers = data
+      @headers = data.clone
       if @headers.has_key?('message')
         @headers.delete('message')
       end
