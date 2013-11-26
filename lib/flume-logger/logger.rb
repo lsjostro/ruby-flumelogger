@@ -38,6 +38,18 @@ class FlumeLogger < ::Logger
   end
   
   def format_message(severity, time, progname, message)
+    data = message
+    body = case data
+    when Hash
+      @headers = data
+      if @headers.has_key?('message')
+        @headers.delete('message')
+      end
+      data['message'] || "No 'message' in Hash"
+    when String
+      data
+    end
+
     if progname
       @headers['application'] = progname
     end
@@ -51,7 +63,7 @@ class FlumeLogger < ::Logger
       @headers['pri'] = severity
       evt = ThriftFlumeEvent.new()
       evt.headers = @headers
-      evt.body = message
+      evt.body = body
       evt
     when :og
       $:.push File.expand_path("../flume-og", __FILE__)
@@ -60,7 +72,7 @@ class FlumeLogger < ::Logger
       evt = ThriftFlumeEvent.new()
       evt.timestamp = time.to_f.to_i * 1000
       evt.priority = PRIORITY[severity]
-      evt.body = message
+      evt.body = body
       evt.host = @headers['host']
       evt.nanos = time.usec * 1000
       @headers.delete('host')
