@@ -15,6 +15,7 @@ class FlumeLogger::Eventserver
       warn "#{self.class} - #{e.class} - #{e.message}: #{event}"
       close
       @client = nil
+      raise
     end
   end
 
